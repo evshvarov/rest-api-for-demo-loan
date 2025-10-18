@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="rest-api-template.ZPM">
+  <Document name="interoperability-loan-rest-api.ZPM">
     <Module>
-      <Name>rest-api-template</Name>
-      <Version>1.1.0</Version>
+      <Name>interoperability-loan-rest-api</Name>
+      <Description>Bank Loan Interoperability Demo</Description>
+      <Version>0.0.1</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
-      <Resource Name="dc.Sample.PKG"/>
-      <Dependencies>
-        <ModuleReference>
-          <Name>swagger-ui</Name>
-          <Version>1.*.*</Version>
-        </ModuleReference>
-      </Dependencies>
-       <CSPApplication 
-        Url="/crud"
-        DispatchClass="dc.Sample.PersonREST"
-        MatchRoles=":{$dbrole}"
-        PasswordAuthEnabled="1"
-        UnauthenticatedEnabled="0"
-        Recurse="1"
-        UseCookies="2"
-        CookiePath="/crud"
-       />
-    </Module>
-    
+      <Resource Name="Demo.Loan.REST.PKG"/>
+      <Resource Name="Demo.Loan.FindRateRESTService.CLS"/>
+      <SystemRequirements Version=">=2020.1" Interoperability="enabled" />
+       <CSPApplication CookiePath="/loan/api/" DefaultTimeout="900" DispatchClass="Demo.Loan.REST.disp" PasswordAuthEnabled="0" Recurse="1" ServeFiles="1" ServeFilesTimeout="3600" UnauthenticatedEnabled="0" Url="/loan/api" UseSessionCookie="2"/>
+   <Invoke Class="Demo.Loan.REST.security" Method="SetupSecurity">
+    </Invoke>
+   </Module>
   </Document>
 </Export>
